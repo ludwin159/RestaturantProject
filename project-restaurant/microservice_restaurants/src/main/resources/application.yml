@@ -1,0 +1,24 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: microservice-restaurants
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/restaurant
+    username: root
+    password: .
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    showSql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
