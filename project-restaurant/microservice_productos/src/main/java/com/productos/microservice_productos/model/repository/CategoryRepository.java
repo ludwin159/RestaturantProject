@@ -10,4 +10,6 @@ import java.util.List;
 public interface CategoryRepository extends JpaRepository<Category, Long> {
     @Query("SELECT p FROM Product p WHERE p.category = ?1")
     public List<Product> getAllProductsByCategoryId(Long idCategory);
+    @Query("Select c from Category c Where c.idRestaurant = ?1")
+    public List<Category> getCategoryByRestaurantId(Long restaurantId);
 }

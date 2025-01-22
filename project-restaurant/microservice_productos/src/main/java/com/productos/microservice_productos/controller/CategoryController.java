@@ -5,6 +5,7 @@ import com.productos.microservice_productos.service.CategoryService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,7 +39,9 @@ public class CategoryController {
     public ResponseEntity<?> deleteCategoryById(@PathVariable Long id) {
         categoryService.deleteById(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-
-
+    }
+    @GetMapping("/categoriesByRestaurant/{idRestaurant}")
+    public ResponseEntity<?> categoriesByRestaurantId(@PathVariable Long idRestaurant) {
+        return ResponseEntity.ok(categoryService.getCategoryByRestaurantId(idRestaurant));
     }
 }

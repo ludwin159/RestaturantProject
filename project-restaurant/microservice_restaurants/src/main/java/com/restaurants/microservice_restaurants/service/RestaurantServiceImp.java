@@ -1,6 +1,8 @@
 package com.restaurants.microservice_restaurants.service;
 
+import com.commons.CategoryDTO;
 import com.restaurants.microservice_restaurants.exception.RestaurantNotFoundException;
+import com.restaurants.microservice_restaurants.feignClient.CategoryClient;
 import com.restaurants.microservice_restaurants.model.entity.Restaurant;
 import com.restaurants.microservice_restaurants.model.repository.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,8 @@ public class RestaurantServiceImp implements RestaurantService{
 
     @Autowired
     private RestaurantRepository restaurantRepository;
+    @Autowired
+    private CategoryClient categoryClient;
 
     @Override
     public List<Restaurant> getAllRestaurants() {
@@ -50,5 +54,10 @@ public class RestaurantServiceImp implements RestaurantService{
                     return restaurant;
                 })
                 .orElseThrow(() -> new RestaurantNotFoundException("Restaurant not found!"));
+    }
+
+    @Override
+    public List<CategoryDTO> getCategoriesById(Long idRestaurant) {
+        return categoryClient.getCategoriesByRestaurantId(idRestaurant);
     }
 }
