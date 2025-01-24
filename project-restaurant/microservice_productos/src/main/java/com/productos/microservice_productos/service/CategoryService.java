@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
 public interface CategoryService {
     public List<Category> getAllCategories();
     public List<Product> getAllProductsByCategoryId(Long categoryId);

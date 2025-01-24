@@ -6,9 +6,11 @@ import com.restaurants.microservice_restaurants.feignClient.CategoryClient;
 import com.restaurants.microservice_restaurants.model.entity.Restaurant;
 import com.restaurants.microservice_restaurants.model.repository.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class RestaurantServiceImp implements RestaurantService{
 
     @Autowired
