@@ -1,0 +1,167 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > CategoryServiceImpl</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.productos.microservice_productos.service</a>
+</div>
+
+<h1>Coverage Summary for Class: CategoryServiceImpl (com.productos.microservice_productos.service)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">CategoryServiceImpl</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    90%
+  </span>
+  <span class="absValue">
+    (9/10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    66.7%
+  </span>
+  <span class="absValue">
+    (12/18)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.productos.microservice_productos.service;
+&nbsp;
+&nbsp;import com.productos.microservice_productos.exception.CategoryNotFoundException;
+&nbsp;import com.productos.microservice_productos.model.entity.Category;
+&nbsp;import com.productos.microservice_productos.model.entity.Product;
+&nbsp;import com.productos.microservice_productos.model.repository.CategoryRepository;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;import org.springframework.stereotype.Service;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;@Service
+<b class="fc">&nbsp;public class CategoryServiceImpl implements CategoryService {</b>
+&nbsp;    @Autowired
+&nbsp;    private CategoryRepository categoryRepository;
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public List&lt;Category&gt; getAllCategories() {
+<b class="fc">&nbsp;        return categoryRepository.findAll();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public List&lt;Product&gt; getAllProductsByCategoryId(Long categoryId) {
+<b class="fc">&nbsp;        return categoryRepository.getAllProductsByCategoryId(categoryId);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public Category findById(Long id) {
+<b class="fc">&nbsp;        return categoryRepository.findById(id).orElseThrow(</b>
+<b class="fc">&nbsp;                () -&gt; new CategoryNotFoundException(&quot;The category with id: &quot;+ Long.toString(id) + &quot; not exists!&quot;)</b>
+&nbsp;        );
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public Category save(Category category) {
+<b class="fc">&nbsp;        return categoryRepository.save(category);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public Category updateCategory(Long id, Category category) {
+<b class="fc">&nbsp;        return categoryRepository.findById(id).map(dbCategory -&gt; {</b>
+<b class="fc">&nbsp;            dbCategory.setName(category.getName());</b>
+<b class="fc">&nbsp;            if (category.getProducts() != null &amp;&amp; !category.getProducts().isEmpty()) {</b>
+<b class="nc">&nbsp;                dbCategory.getProducts().clear();</b>
+<b class="nc">&nbsp;                for (Product product: category.getProducts()) {</b>
+<b class="nc">&nbsp;                    product.setCategory(category);</b>
+<b class="nc">&nbsp;                    dbCategory.addProduct(product);</b>
+<b class="nc">&nbsp;                }</b>
+&nbsp;            }
+<b class="fc">&nbsp;            return categoryRepository.save(dbCategory);</b>
+<b class="fc">&nbsp;        }).orElseThrow(() -&gt; new CategoryNotFoundException(&quot;The category with id: &quot; + Long.toString(id) + &quot; not found!&quot;));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void deleteById(Long id) {
+<b class="fc">&nbsp;        categoryRepository.deleteById(id);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public List&lt;Category&gt; getCategoryByRestaurantId(Long restaurantId) {
+<b class="nc">&nbsp;        return categoryRepository.getCategoryByRestaurantId(restaurantId);</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-01-28 22:03</div>
+</div>
+</body>
+</html>

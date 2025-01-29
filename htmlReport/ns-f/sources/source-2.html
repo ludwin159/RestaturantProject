@@ -1,0 +1,84 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > RestaurantService</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.restaurants.microservice_restaurants.service</a>
+</div>
+
+<h1>Coverage Summary for Class: RestaurantService (com.restaurants.microservice_restaurants.service)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">RestaurantService</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.restaurants.microservice_restaurants.service;
+&nbsp;
+&nbsp;import com.commons.CategoryDTO;
+&nbsp;import com.restaurants.microservice_restaurants.model.entity.Restaurant;
+&nbsp;import org.springframework.stereotype.Service;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;public interface RestaurantService {
+&nbsp;    public List&lt;Restaurant&gt; getAllRestaurants();
+&nbsp;    public Restaurant findRestaurantById(Long idRestaurant);
+&nbsp;    public Restaurant saveRestaurant(Restaurant restaurant);
+&nbsp;    public Restaurant updateRestaurant(Long id, Restaurant newRestaurant);
+&nbsp;    public void deleteRestaurantById(Long id);
+&nbsp;    public List&lt;CategoryDTO&gt; getCategoriesById(Long idRestaurant);
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-01-28 22:03</div>
+</div>
+</body>
+</html>

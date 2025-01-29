@@ -39,7 +39,7 @@ class CategoryControllerTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        category = Category.builder().id(1L).name("Entrances").build();
+        category = Category.builder().id(1L).name("Entrances").idRestaurant(10L).build();
         category1 = Category.builder().id(2L).name("Menus").build();
         product = Product.builder()
                 .id(1L)

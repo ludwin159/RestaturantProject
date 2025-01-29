@@ -49,7 +49,6 @@
 		<module>microservice_restaurants</module>
 		<module>microservice_productos</module>
 		<module>restaurant_commons</module>
-		<module>restaurant_commons</module>
 	</modules>
 
 	<build>

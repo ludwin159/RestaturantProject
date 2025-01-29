@@ -1,0 +1,169 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > RestaurantServiceImp</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.restaurants.microservice_restaurants.service</a>
+</div>
+
+<h1>Coverage Summary for Class: RestaurantServiceImp (com.restaurants.microservice_restaurants.service)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">RestaurantServiceImp</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/20)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.restaurants.microservice_restaurants.service;
+&nbsp;
+&nbsp;import com.commons.CategoryDTO;
+&nbsp;import com.restaurants.microservice_restaurants.exception.RestaurantNotFoundException;
+&nbsp;import com.restaurants.microservice_restaurants.feignClient.CategoryClient;
+&nbsp;import com.restaurants.microservice_restaurants.model.entity.Restaurant;
+&nbsp;import com.restaurants.microservice_restaurants.model.repository.RestaurantRepository;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;import org.springframework.stereotype.Service;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;@Service
+<b class="nc">&nbsp;public class RestaurantServiceImp implements RestaurantService{</b>
+&nbsp;
+&nbsp;    @Autowired
+&nbsp;    private RestaurantRepository restaurantRepository;
+&nbsp;    @Autowired
+&nbsp;    private CategoryClient categoryClient;
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public List&lt;Restaurant&gt; getAllRestaurants() {
+<b class="nc">&nbsp;        return restaurantRepository.findAll();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public Restaurant findRestaurantById(Long idRestaurant) {
+<b class="nc">&nbsp;        return restaurantRepository.findById(idRestaurant).orElseThrow(</b>
+<b class="nc">&nbsp;                () -&gt; new RestaurantNotFoundException(&quot;Restaurant not found!&quot;));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public Restaurant saveRestaurant(Restaurant restaurant) {
+<b class="nc">&nbsp;        return restaurantRepository.save(restaurant);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public Restaurant updateRestaurant(Long id, Restaurant newRestaurant) {
+<b class="nc">&nbsp;        return restaurantRepository.findById(id)</b>
+<b class="nc">&nbsp;                .map(oldRestaurant -&gt; {</b>
+<b class="nc">&nbsp;                    oldRestaurant.setLogo(newRestaurant.getLogo());</b>
+<b class="nc">&nbsp;                    oldRestaurant.setRuc(newRestaurant.getRuc());</b>
+<b class="nc">&nbsp;                    oldRestaurant.setTradeName(newRestaurant.getTradeName());</b>
+<b class="nc">&nbsp;                    oldRestaurant.setTableNumber(newRestaurant.getTableNumber());</b>
+<b class="nc">&nbsp;                    restaurantRepository.save(oldRestaurant);</b>
+<b class="nc">&nbsp;                    return oldRestaurant;</b>
+&nbsp;                })
+<b class="nc">&nbsp;                .orElseThrow(() -&gt; new RestaurantNotFoundException(&quot;Restaurant not found!&quot;));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void deleteRestaurantById(Long id) {
+<b class="nc">&nbsp;        restaurantRepository.findById(id)</b>
+<b class="nc">&nbsp;                .map(restaurant -&gt; {</b>
+<b class="nc">&nbsp;                    restaurantRepository.deleteById(id);</b>
+<b class="nc">&nbsp;                    return restaurant;</b>
+&nbsp;                })
+<b class="nc">&nbsp;                .orElseThrow(() -&gt; new RestaurantNotFoundException(&quot;Restaurant not found!&quot;));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public List&lt;CategoryDTO&gt; getCategoriesById(Long idRestaurant) {
+<b class="nc">&nbsp;        return categoryClient.getCategoriesByRestaurantId(idRestaurant);</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-01-28 22:03</div>
+</div>
+</body>
+</html>

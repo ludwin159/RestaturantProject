@@ -2,7 +2,6 @@ package com.restaurants.microservice_restaurants.service;
 
 import com.commons.CategoryDTO;
 import com.restaurants.microservice_restaurants.model.entity.Restaurant;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 

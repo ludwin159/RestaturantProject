@@ -40,7 +40,7 @@ public class Category {
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "category"})
     private List<Product> products = new ArrayList<>();
 
-    @NotBlank
+    @NotNull
     private Long idRestaurant;
 
     public void addProduct(Product product) {
